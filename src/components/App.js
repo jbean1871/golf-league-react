@@ -8,6 +8,7 @@ import Login from "./Login";
 import PrivateRoute from "./PrivateRoute";
 import ForgotPassword from "./ForgotPassword";
 import UpdateProfile from "./UpdateProfile";
+import Add from "./Add";
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
                   path="/update-profile"
                   element={<UpdateProfile />}
                 />
+              </Route>
+              <Route path="/" element={<PrivateRoute />}>
+                <Route exact path="/add" element={<Add />} />
               </Route>
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />

@@ -2,11 +2,27 @@ import React, { useState } from "react";
 import { Card, Button, Alert } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import { db } from "../firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 export default function Dashboard() {
   const [error, setError] = useState("");
   const { currentUser, logout } = useAuth();
   const history = useNavigate();
+
+  async function getData() {
+    const docRef = doc(db, "users", currentUser.uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      console.log("team:", data.teamName);
+      console.log("Document data:", docSnap.data());
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  }
 
   async function handleLogout() {
     setError("");
@@ -26,13 +42,18 @@ export default function Dashboard() {
           <h2 className="text-center mb-4">Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <strong>Email:</strong> {currentUser.email}
-          {currentUser.uid}
           <Link to="/update-profile" className="btn btn-primary w-100 mt-3">
             Update Profile
+          </Link>
+          <Link to="/add" className="btn btn-primary w-100 mt-3">
+            Database
           </Link>
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
+        <Button variant="link" onClick={getData}>
+          Show Data
+        </Button>
         <Button variant="link" onClick={handleLogout}>
           Log Out
         </Button>
