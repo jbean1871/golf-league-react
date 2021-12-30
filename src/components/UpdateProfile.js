@@ -7,7 +7,10 @@ export default function UpdateProfile() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { currentUser, updatePassword, updateEmail } = useAuth();
+  const usernameRef = useRef();
+  const membersRef = useRef();
+  const { currentUser, updatePassword, updateEmail, displayName, members } =
+    useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useNavigate();
@@ -24,6 +27,12 @@ export default function UpdateProfile() {
 
     if (emailRef.current.value !== currentUser.email) {
       promises.push(updateEmail(emailRef.current.value));
+    }
+    if (usernameRef.current.value) {
+      promises.push(displayName(usernameRef.current.value));
+    }
+    if (membersRef.current.value) {
+      promises.push(members(membersRef.current.value));
     }
     if (passwordRef.current.value) {
       promises.push(updatePassword(passwordRef.current.value));
@@ -57,6 +66,17 @@ export default function UpdateProfile() {
                 defaultValue={currentUser.email}
               />
             </Form.Group>
+
+            <Form.Group id="username">
+              <Form.Label>Username</Form.Label>
+              <Form.Control type="text" ref={usernameRef} />
+            </Form.Group>
+
+            <Form.Group id="members">
+              <Form.Label>Members</Form.Label>
+              <Form.Control type="text" ref={membersRef} />
+            </Form.Group>
+
             <Form.Group id="password">
               <Form.Label>Password</Form.Label>
               <Form.Control
@@ -65,6 +85,7 @@ export default function UpdateProfile() {
                 placeholder="Leave blank to keep the same"
               />
             </Form.Group>
+
             <Form.Group id="password-confirm">
               <Form.Label>Password Confirmation</Form.Label>
               <Form.Control

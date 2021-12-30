@@ -1,0 +1,25 @@
+.round-wrapper {
+  margin-top: 5px;
+}
+.schedule-header {
+  display: flex;
+  align-items: center;
+}
+table {
+  border: 0;
+}
+table thead {
+  color: #fff;
+  background-color: rgb(4, 51, 98);
+}
+table thead tr th {
+  font-size: 0.8rem;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+  border: 0;
+}
+table tbody tr td {
+  font-size: 0.9rem;
+  letter-spacing: 0.03rem;
+  border: 0;
+}
