@@ -1,7 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
 import { db } from "../firebase";
 import { useAuth } from "./AuthContext";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  orderBy,
+} from "firebase/firestore";
 
 const DataContext = React.createContext();
 
@@ -30,8 +37,12 @@ export function DataProvider({ children }) {
   }
 
   async function teams() {
-    const teamsArr = await getDocs(collection(db, "teams"));
     let teamsObj = {};
+    const teamsCol = query(
+      collection(db, "teams"),
+      orderBy("totalPoints", "desc")
+    );
+    const teamsArr = await getDocs(teamsCol);
     teamsArr.forEach((team) => {
       teamsObj[team.id] = team.data();
     });
