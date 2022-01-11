@@ -27,7 +27,7 @@ export default function Login() {
 
   return (
     <>
-      <Card>
+      <Card style={{ width: "20rem" }}>
         <Card.Body>
           <h2 className="text-center mb-4">Login</h2>
           {error && <Alert variant="danger">{error}</Alert>}

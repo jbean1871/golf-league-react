@@ -1,24 +1,38 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../firebase";
-import { collection, query, orderBy, getDocs } from "firebase/firestore";
+import { useData } from "../contexts/DataContext";
+import "../styles/leaderboard.css";
 
 export default function Leaderboard() {
-  async function orderTotals() {
-    db.collection("teams")
-      .orderBy("totalPoints", "desc")
-      .get()
-      .then((snapshot) => {
-        snapshot.docs.forEach((doc) => {
-          console.log(doc.data());
-        });
-      });
+  const { teamData, teamsData } = useData();
+  if (!teamsData) {
+    return <h3>Loading Leaderboard</h3>;
   }
-  useEffect(() => {
-    orderTotals();
-  }, []);
+  function teamScore(team) {
+    return teamsData[team].totalPoints;
+  }
+
   return (
-    <div>
-      <p></p>
+    <div className="m-2">
+      <div className="leaderboard-header">
+        <div className="position-header">Position</div>
+        <div className="team-members-header">Team</div>
+        <div className="total-points-header">Points</div>
+        <div></div>
+      </div>
+      {Object.keys(teamsData).map((team, index) => {
+        return (
+          <div key={index} className="leaderboard-row">
+            <div className="position">0{index + 1}</div>
+            <div className="team-members">
+              {teamsData[team].membersArr[0]}
+              {teamsData[team].membersArr[1] ? " & " : ""}
+              {teamsData[team].membersArr[1] && teamsData[team].membersArr[1]}
+            </div>
+            <div className="total-points">{teamScore(team)}</div>
+            <div></div>
+          </div>
+        );
+      })}
     </div>
   );
 }

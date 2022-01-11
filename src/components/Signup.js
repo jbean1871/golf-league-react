@@ -38,7 +38,7 @@ export default function Signup() {
 
   return (
     <>
-      <Card>
+      <Card style={{ width: "20rem" }}>
         <Card.Body>
           <h2 className="text-center mb-4">Sign Up</h2>
           {error && <Alert variant="danger">{error}</Alert>}
@@ -54,6 +54,7 @@ export default function Signup() {
                 <option value="timRoss">Tim &amp; Ross</option>
                 <option value="lukeJake">Luke &amp; Jake</option>
                 <option value="chuckDave">Chuck &amp; Dave</option>
+                <option value="ericDan">Eric &amp; Dan</option>
               </Form.Select>
             </Form.Group>
             <Form.Group className="mb-4" id="email">
