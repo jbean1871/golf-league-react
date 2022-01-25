@@ -11,3 +11,10 @@ nav.navbar {
   color: var(--spl-primary);
   letter-spacing: 0.1rem;
 }
+
+.navbar-light .navbar-toggler {
+  border: 0;
+}
+.dropdown-menu {
+  border: 0;
+}

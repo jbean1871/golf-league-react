@@ -21,7 +21,7 @@ export function DataProvider({ children }) {
   const [userData, setUserData] = useState();
   const [teamData, setTeamData] = useState();
   const [teamsData, setTeamsData] = useState();
-  const [loading, setLoading] = useState(true);
+  const [loadingData, setLoadingData] = useState(true);
 
   // Signed In User Oject
   async function user() {
@@ -47,7 +47,7 @@ export function DataProvider({ children }) {
       teamsObj[team.id] = team.data();
     });
     setTeamsData(teamsObj);
-    setLoading(false);
+    setLoadingData(false);
   }
 
   useEffect(() => {
@@ -64,8 +64,8 @@ export function DataProvider({ children }) {
     setTeamData,
     teamsData,
     setTeamsData,
-    loading,
-    setLoading,
+    loadingData,
+    setLoadingData,
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

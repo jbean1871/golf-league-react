@@ -12,13 +12,7 @@ export default function ScheduleTable() {
     let teamMembers = "No Members Yet";
     Object.keys(teamsData).map((teamId, index) => {
       if (team === teamId) {
-        let membersArr = teamsData[teamId].membersArr;
-        if (membersArr.length === 1) {
-          teamMembers = membersArr[0];
-        }
-        if (membersArr.length === 2) {
-          teamMembers = `${membersArr[0]} & ${membersArr[1]}`;
-        }
+        teamMembers = teamsData[teamId].members;
       }
     });
     return teamMembers;
@@ -52,10 +46,10 @@ export default function ScheduleTable() {
                   <div className="schedule-header">
                     <h4 className="round-header">Round {roundNum}</h4>
                     <div className="line"></div>
-                    <h5 className="round-dates">May 16 - 19 , 2022</h5>
+                    <h5 className="round-dates">TBD</h5>
                   </div>
 
-                  <Table striped bordered hover size="sm">
+                  <Table hover>
                     <thead>
                       <tr>
                         <th>Home</th>

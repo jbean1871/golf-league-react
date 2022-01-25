@@ -50,6 +50,9 @@ export default function Navigation() {
               title={userData && userData.firstName}
               id="navbarScrollingDropdown"
             >
+              <NavDropdown.Item href="../update-profile">
+                Update Profile
+              </NavDropdown.Item>
               <NavDropdown.Item onClick={handleLogout}>
                 Log Out
               </NavDropdown.Item>

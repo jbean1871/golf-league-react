@@ -1,0 +1,19 @@
+.spl_team-header {
+  margin-top: 2rem;
+}
+.spl_header-left {
+  display: flex;
+  align-items: center;
+}
+.spl_team-image {
+  display: inline;
+  max-width: 75px;
+  height: auto;
+}
+.spl_team-details {
+  margin-left: 25px;
+}
+.spl_team-name {
+  font-size: 2.4rem;
+  margin: 0;
+}
