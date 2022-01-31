@@ -19,6 +19,7 @@ export default function Navigation() {
       history("/login");
     } catch {
       setError("Failed to log out");
+      console.log(error);
     }
   }
 
@@ -42,8 +43,10 @@ export default function Navigation() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
+            <Nav.Link href="/">Dashboard</Nav.Link>
             <Nav.Link href="/Leaderboard">Leaderboard</Nav.Link>
             <Nav.Link href="../Schedule">Schedule</Nav.Link>
+            <Nav.Link href="../About">About</Nav.Link>
           </Nav>
           <Nav style={{ maxHeight: "100px" }} navbarScroll>
             <NavDropdown

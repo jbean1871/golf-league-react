@@ -1,4 +1,3 @@
-import { connectFirestoreEmulator } from "firebase/firestore";
 import React, { useContext, useState, useEffect } from "react";
 import { auth } from "../firebase";
 import { db } from "../firebase";
@@ -16,7 +15,7 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [url, setUrl] = useState("");
   const [progress, setProgress] = useState(0);
-
+  console.log(loading);
   function signup(email, password, firstName, team) {
     return auth.createUserWithEmailAndPassword(email, password).then((res) => {
       createUser(auth.currentUser.uid, email, firstName, team);
@@ -57,7 +56,6 @@ export function AuthProvider({ children }) {
           .ref(`teamImages/${teamImg.name}`)
           .getDownloadURL()
           .then((url) => {
-            console.log(url);
             setUrl(url);
             const teamRef = db.collection("teams").doc(user.teamId);
             return teamRef
@@ -92,6 +90,7 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
+      setLoading(true);
       setCurrentUser(user);
       setLoading(false);
     });

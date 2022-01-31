@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SelectedTeam from "./SelectedTeam";
 import Navigation from "./Navigation";
-import { Container, Row, Col } from "react-bootstrap";
+import { Button, Container, Row, Col } from "react-bootstrap";
 import { useData } from "../contexts/DataContext";
 import "../styles/leaderboard.css";
 
@@ -32,9 +32,18 @@ export default function Leaderboard() {
       <Container>
         <Row>
           <Col>
-            <button type="button" onClick={() => closeTeam()}>
-              Back to Leaderboard
-            </button>
+            {isSelected ? (
+              <Button
+                variant="primary"
+                id="spl_back-btn"
+                type="button"
+                onClick={() => closeTeam()}
+              >
+                Back to Leaderboard
+              </Button>
+            ) : (
+              ""
+            )}
             {isSelected ? <SelectedTeam selected={selectedTeam} /> : ""}
             <div id="spl_leaderboard-table">
               <div className="leaderboard-header">

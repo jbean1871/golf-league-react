@@ -16,7 +16,9 @@
   padding: 15px 5px;
   position: relative;
 }
-
+.modal-header {
+  padding: 0.4rem 1rem;
+}
 .spl_grow {
   display: flex;
   flex-grow: 1;
@@ -84,6 +86,31 @@
 .spl_tie {
   border: 2px solid #5d5d5d;
   color: #5d5d5d;
+}
+.spl_point-btn {
+  background-color: var(--spl-primary);
+}
+.spl_score-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 2rem;
+  align-items: center;
+  border: 1px solid #ced4da;
+  padding: 25px 15px 15px 15px;
+  margin-bottom: 25px;
+  border-radius: 0.25rem;
+}
+.spl_score-container .spl_score {
+  display: grid;
+  justify-items: center;
+}
+.spl_score-container h3 {
+  font-size: 1.4rem;
+  margin: 0;
+}
+.spl_score-container p {
+  font-size: 1.4rem;
+  margin: 0;
 }
 @media (max-width: 599.95px) {
   .spl_grow {

@@ -3,10 +3,19 @@ import { useData } from "../contexts/DataContext";
 import "../styles/statCards.css";
 
 export default function StatCards(props) {
-  const { userData, teamsData } = useData();
-  console.log(props.teamId);
+  const { teamsData } = useData();
   const teamName = props.teamId;
   let roundsPlayed = 0;
+
+  const nextMatch = () => {
+    let roundsArr = [];
+    teamsData[teamName].rounds.forEach((round) => {
+      if (!round.completed) {
+        roundsArr.push(round.opponent);
+      }
+    });
+    return roundsArr[0];
+  };
 
   const record = () => {
     let wins = 0;
@@ -41,6 +50,10 @@ export default function StatCards(props) {
       <div className="spl_stat-card">
         <h4>Rounds Played</h4>
         <p>{roundsPlayed}/14</p>
+      </div>
+      <div className="spl_stat-card">
+        <h4>Next Match</h4>
+        <p>{nextMatch()}</p>
       </div>
     </div>
   );

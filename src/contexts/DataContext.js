@@ -17,9 +17,8 @@ export function useData() {
 }
 
 export function DataProvider({ children }) {
-  const { currentUser } = useAuth();
+  const { currentUser, loading } = useAuth();
   const [userData, setUserData] = useState();
-  const [teamData, setTeamData] = useState();
   const [teamsData, setTeamsData] = useState();
   const [loadingData, setLoadingData] = useState(true);
 
@@ -28,14 +27,7 @@ export function DataProvider({ children }) {
     const userRef = doc(db, "users", currentUser.uid);
     const userData = await getDoc(userRef);
     setUserData(userData.data());
-    team(userData.data().teamId);
   }
-  async function team(team) {
-    const teamRef = doc(db, "teams", team);
-    const teamData = await getDoc(teamRef);
-    setTeamData(teamData.data());
-  }
-
   async function teams() {
     let teamsObj = {};
     const teamsCol = query(
@@ -60,8 +52,6 @@ export function DataProvider({ children }) {
   const value = {
     userData,
     setUserData,
-    teamData,
-    setTeamData,
     teamsData,
     setTeamsData,
     loadingData,
