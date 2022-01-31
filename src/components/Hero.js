@@ -10,7 +10,7 @@ export default function Hero() {
           <Container>
             <Row>
               <Col>
-                <h5 className="text-white">2022 Season</h5>
+                <h5 className="text-white">Header Goes Here</h5>
                 <h1 className="text-white">Seacoast Premiere League</h1>
               </Col>
             </Row>
